@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//bharath
 
 void main() {
   runApp(const MyApp());
@@ -37,14 +38,27 @@ class _ListViewRefreshPageState extends State<ListViewRefreshPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('ListView with Pull to Refresh')),
-      body: RefreshIndicator(
-        onRefresh: _refresh,
-        child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(items[index]),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Pull down to refresh the list',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: Text(items[index]),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
